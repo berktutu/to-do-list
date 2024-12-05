@@ -1,0 +1,148 @@
+:root {
+  font-size: 62.5%;
+  --width: 1200px;
+  --shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px;
+  --white: #fafafa;
+  --gray: #e5e7eb;
+  --light-gray: #f3f4f6;
+  --dark-gray: #9ca3af;
+  --black: #171717;
+  --light-black: #262626;
+  --lighter-black: #404040;
+  --red: #dc2626;
+  --light-red: #ef4444;
+  --green: #16a34a;
+  --light-green: #22c55e;
+  --spacing-xsmall: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xlarge: 40px;
+}
+
+/* CSS GLOBAL RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.menu {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  width: 200px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu h3 {
+  margin-top: 0;
+}
+
+.menu button {
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+#add-project {
+  background-color: #444;
+  color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 20px;
+  flex: 1;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+}
+
+#task-list li {
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#task-list li h4 {
+  margin: 0;
+}
+
+#task-list li p {
+  margin: 5px 0 0;
+}
+
+.project-btn {
+  background-color: white;
+  color: black;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.task-card {
+  width: 400px;
+  height: 200px;
+  padding: 24px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  gap: 24px;
+}
+
+.task-content-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-content h2 {
+  font-size: 2.4rem;
+}
+
+.task-content p {
+  font-size: 1.4rem;
+}
+
+.delete {
+  width: 24px;
+  height: 24px;
+}
+
+#project-name {
+  font-size: 3.2rem;
+}

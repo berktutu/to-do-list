@@ -34,12 +34,26 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
   display: flex;
   width: 100%;
+}
+
+.btn {
+  padding: var(--spacing-small);
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: var(--black);
+  color: var(--white);
+  max-width: 20vh;
+  min-width: 15vh;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 }
 
 .menu {

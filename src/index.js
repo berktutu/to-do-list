@@ -139,13 +139,6 @@ function addTask() {
 
   taskCounter++;
 
-  // const taskName = prompt("Enter the task name:");
-  // const taskDescription = prompt("Enter the task description:");
-  // const taskDueDate = prompt("Enter the due date (YYYY-MM-DD):");
-  // const taskStatus = prompt(
-  //   "Enter the task status (not-started, in-progress, completed):"
-  // );
-
   const taskName = formTaskName.value;
   const taskDescription = formTaskDescription.value;
   const taskDueDate = formTaskDate.value;

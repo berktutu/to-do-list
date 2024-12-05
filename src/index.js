@@ -13,18 +13,31 @@ const projects = [];
 const projectBtnsContainer = document.getElementById("project-buttons");
 const projectNameElement = document.getElementById("project-name");
 const taskContainer = document.querySelector(".task-container");
+const projectModalContent = document.querySelector(".project-modal-content");
+const taskModalContent = document.querySelector(".task-modal-content");
+const formProjectName = document.querySelector("#project-form-name");
+const formTaskName = document.querySelector("#task-name");
+const formTaskDescription = document.querySelector("#task-description");
+const formTaskDate = document.querySelector("#task-date");
+const formTaskStatus = document.querySelector("#task-checkbox");
 
 // Button elements
 const addProjectBtn = document.getElementById("add-project");
 const addTaskBtn = document.getElementById("add-task");
+const projectModalCloseBtn = document.querySelector(".project-modal-close");
+const taskModalCloseBtn = document.querySelector(".task-modal-close");
+const formAddProjectBtn = document.querySelector(".add-project-btn");
+const formAddTaskBtn = document.querySelector(".add-task-btn");
 
 // Function to add a new project
 function addProject() {
-  const projectName = prompt("Enter the project name:");
-
   projectCounter++;
+  const projectName = formProjectName.value;
 
   if (projectName) {
+    taskContainer.innerHTML = "";
+    projectNameElement.textContent = "";
+
     const newProject = {
       key: `project${projectCounter}`,
       name: projectName,
@@ -42,8 +55,13 @@ function addProject() {
     projectNameElement.dataset.key = newProject.key;
     projectNameElement.textContent = projectName;
 
+    // Make add task button visible
+    addTaskBtn.classList.remove("hidden");
+
     // Add event listener to project buttons
     projectBtn.addEventListener("click", selectProject);
+
+    formProjectName.value = "";
   }
 }
 
@@ -53,6 +71,7 @@ function renderTasks(currentProject) {
   currentProject.tasks.forEach((task) => {
     const taskCardEl = document.createElement("div");
     taskCardEl.classList.add("task-card");
+    taskCardEl.dataset.key = task.key;
 
     const taskHtml = `
     <div class="task-content-container">
@@ -81,7 +100,20 @@ function renderTasks(currentProject) {
     taskCardEl.innerHTML = taskHtml;
     // Insert the html
     taskContainer.appendChild(taskCardEl);
+
+    const deleteBtn = taskCardEl.querySelector(".delete");
+    deleteBtn.addEventListener("click", () =>
+      deleteTask(currentProject, task.key)
+    );
   });
+}
+
+function deleteTask(currentProject, taskKey) {
+  currentProject.tasks = currentProject.tasks.filter(
+    (task) => task.key !== taskKey
+  );
+
+  renderTasks(currentProject);
 }
 
 function selectProject(e) {
@@ -107,12 +139,17 @@ function addTask() {
 
   taskCounter++;
 
-  const taskName = prompt("Enter the task name:");
-  const taskDescription = prompt("Enter the task description:");
-  const taskDueDate = prompt("Enter the due date (YYYY-MM-DD):");
-  const taskStatus = prompt(
-    "Enter the task status (not-started, in-progress, completed):"
-  );
+  // const taskName = prompt("Enter the task name:");
+  // const taskDescription = prompt("Enter the task description:");
+  // const taskDueDate = prompt("Enter the due date (YYYY-MM-DD):");
+  // const taskStatus = prompt(
+  //   "Enter the task status (not-started, in-progress, completed):"
+  // );
+
+  const taskName = formTaskName.value;
+  const taskDescription = formTaskDescription.value;
+  const taskDueDate = formTaskDate.value;
+  const taskStatus = formTaskStatus.checked ? "Completed" : "Incompleted";
 
   if (taskName && taskDescription && taskDueDate && taskStatus) {
     const newTask = {
@@ -156,15 +193,49 @@ function addTask() {
     taskCardEl.innerHTML = taskHtml;
     // Insert the html
     taskContainer.appendChild(taskCardEl);
+
+    formTaskName.value = "";
+    formTaskDescription.value = "";
+    formTaskDate.value = "";
+    formTaskStatus.checked = false;
   }
 }
 
+function openModal(modal) {
+  modal.classList.remove("hidden");
+  modal.classList.add("visible");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("visible");
+  modal.classList.add("hidden");
+}
+
 // Event handlers
-addProjectBtn.addEventListener("click", function () {
+formAddProjectBtn.addEventListener("click", function () {
   addProject();
+  closeModal(projectModalContent);
+});
+
+addProjectBtn.addEventListener("click", function () {
+  openModal(projectModalContent);
+});
+
+projectModalCloseBtn.addEventListener("click", function () {
+  closeModal(projectModalContent);
 });
 
 addTaskBtn.addEventListener("click", function () {
+  openModal(taskModalContent);
+});
+
+formAddTaskBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("Add task button clicked");
   addTask();
-  console.log("clicked");
+  closeModal(taskModalContent);
+});
+
+taskModalCloseBtn.addEventListener("click", function () {
+  closeModal(taskModalContent);
 });

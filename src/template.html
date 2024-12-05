@@ -17,7 +17,91 @@
         <h1 id="project-name">Select a Project</h1>
         <div class="task-container"></div>
       </div>
-      <button id="add-task">Add New Task</button>
+      <button id="add-task" class="hidden">Add New Task</button>
+      <div class="modal-content project-modal-content hidden">
+        <div class="project-modal">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="modal-close project-modal-close"
+            data-modal="project"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+          <h1>Add New Project</h1>
+          <form class="project-form form">
+            <div class="label-and-input">
+              <label class="labelForm" for="project-form-name"
+                >Project Name</label
+              >
+              <input
+                type="text"
+                id="project-form-name"
+                placeholder="Project Name"
+                required
+              />
+            </div>
+            <button class="btn add-project-btn">Add Project</button>
+          </form>
+        </div>
+      </div>
+      <div class="task-modal-content hidden">
+        <div class="task-modal">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="modal-close task-modal-close"
+            data-modal="task"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+          <h1>Add New Task</h1>
+          <form class="task-form form">
+            <div class="label-and-input">
+              <label class="labelForm" for="task-name">Task Name</label>
+              <input
+                type="text"
+                id="task-name"
+                placeholder="Task Name"
+                required
+              />
+
+              <label for="task-description">Description:</label>
+              <textarea
+                id="task-description"
+                name="task-description"
+                placeholder="Enter description"
+                rows="4"
+              ></textarea>
+
+              <label for="task-date">Date:</label>
+              <input type="date" id="task-date" name="task-date" required />
+
+              <label>
+                <input type="checkbox" id="task-checkbox" />
+                <span id="task-checkbox-text" class="incomplete"
+                  >Completed</span
+                >
+              </label>
+            </div>
+            <button class="btn add-task-btn">Add Task</button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>
